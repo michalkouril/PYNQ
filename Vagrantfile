@@ -10,11 +10,11 @@ Vagrant.configure("2") do |config|
 		bionic.vm.synced_folder ".", "/pynq", 
 			owner: "vagrant", group: "vagrant"
 		bionic.vm.provider "virtualbox" do |vb|
-			vb.gui = true
+			# vb.gui = true
 			vb.name = "pynq_ubuntu_18_04"
 			vb.memory = "8192"
-			vb.customize ["modifyvm", :id, "--vram", "128"]
-			vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+			# vb.customize ["modifyvm", :id, "--vram", "128"]
+			# vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
 			disk_image = File.join(File.dirname(File.expand_path(__FILE__)), 
 				'ubuntu_18_04.vdi')
 			unless File.exist?(disk_image)
@@ -50,6 +50,9 @@ Vagrant.configure("2") do |config|
 		bionic.vm.provision "shell",
 			inline: "apt-get update"
 
+		bionic.vm.provision "shell",
+			inline: "dpkg --add-architecture i386"
+		
 		bionic.vm.provision "shell", 
 			inline: "/bin/bash /pynq/sdbuild/scripts/setup_host.sh"
 
