@@ -221,7 +221,7 @@ class XclbinHandler(BitstreamHandler):
         self._sections, _ = parse_sections(self._data)
 
     def get_bin_data(self):
-        from pynq._3rd_party.xclbin import AXLF_SECTION_KIND
+        from pynq._3rdparty.xclbin import AXLF_SECTION_KIND
         if AXLF_SECTION_KIND.BITSTREAM in self._sections:
             return bit2bin(self._sections[AXLF_SECTION_KIND.BITSTREAM])
         return None
