@@ -215,7 +215,7 @@ class BinfileHandler(BitstreamHandler):
 
 class XclbinHandler(BitstreamHandler):
     def __init__(self, filepath):
-        from .xclbin_parser import parse_sections
+        from .xclbin_parser import parse_xclbin_header
         super().__init__(filepath)
         self._data = self._filepath.read_bytes()
         self._sections, _ = parse_sections(self._data)
